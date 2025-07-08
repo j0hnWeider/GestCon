@@ -1,10 +1,13 @@
-package com.GestCon.model;
+package com.gestcon.model;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 
+/**
+ * Entidade que representa um Usuário do sistema GestCon.
+ */
 @Entity
 @Table(name = "usuarios")
 public class Usuario {

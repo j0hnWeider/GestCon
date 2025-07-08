@@ -1,0 +1,195 @@
+# Arquivos compilados Java
+*.class
+
+# Arquivos de log
+*.log
+
+# Arquivos BlueJ
+*.ctxt
+
+# Mobile Tools for Java (J2ME)
+.mtj.tmp/
+
+# Arquivos de pacote
+*.jar
+*.war
+*.nar
+*.ear
+*.zip
+*.tar.gz
+*.rar
+
+# Logs de crash da máquina virtual Java
+hs_err_pid*
+replay_pid*
+
+# Maven
+target/
+pom.xml.tag
+pom.xml.releaseBackup
+pom.xml.versionsBackup
+pom.xml.next
+release.properties
+dependency-reduced-pom.xml
+buildNumber.properties
+.mvn/timing.properties
+.mvn/wrapper/maven-wrapper.jar
+
+# Gradle
+.gradle
+build/
+!gradle/wrapper/gradle-wrapper.jar
+!**/src/main/**/build/
+!**/src/test/**/build/
+
+# IntelliJ IDEA
+.idea/
+*.iws
+*.iml
+*.ipr
+
+# Eclipse
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cache
+
+# NetBeans
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+
+# VS Code
+.vscode/
+
+# Node.js
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
+.pnpm-debug.log*
+
+# Dados de runtime
+pids
+*.pid
+*.seed
+*.pid.lock
+
+# Diretório de cobertura usado por ferramentas como istanbul
+coverage/
+*.lcov
+
+# Cobertura de teste nyc
+.nyc_output
+
+# Armazenamento intermediário do Grunt
+.grunt
+
+# Diretório de dependências do Bower
+bower_components
+
+# Configuração node-waf
+.lock-wscript
+
+# Addons binários compilados
+build/Release
+
+# Diretórios de dependências
+node_modules/
+jspm_packages/
+
+# Diretório de dependências Snowpack
+web_modules/
+
+# Cache TypeScript
+*.tsbuildinfo
+
+# Diretório de cache npm opcional
+.npm
+
+# Cache eslint opcional
+.eslintcache
+
+# Cache stylelint opcional
+.stylelintcache
+
+# Cache Microbundle
+.rpt2_cache/
+.rts2_cache_cjs/
+.rts2_cache_es/
+.rts2_cache_umd/
+
+# Histórico REPL opcional
+.node_repl_history
+
+# Saída do 'npm pack'
+*.tgz
+
+# Arquivo de integridade Yarn
+.yarn-integrity
+
+# Arquivos de variáveis de ambiente dotenv
+.env
+.env.development.local
+.env.test.local
+.env.production.local
+.env.local
+
+# Cache parcel-bundler
+.cache
+.parcel-cache
+
+# Saída de build Next.js
+.next
+
+# Saída de build/generate Nuxt.js
+.nuxt
+dist
+
+# Arquivos Gatsby
+.cache/
+public
+
+# Saídas de build Storybook
+.out
+.storybook-out
+storybook-static
+
+# Pastas temporárias
+tmp/
+temp/
+
+# Diretórios e arquivos de editores
+.vscode/*
+!.vscode/extensions.json
+.idea
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# Arquivos gerados pelo SO
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Banco de dados
+*.db
+*.sqlite
+*.sqlite3
+
+# Específicos da aplicação
+application-local.properties
+application-dev.properties
+logs/

@@ -1,0 +1,59 @@
+version: '3.8'
+
+services:
+  # Banco de dados PostgreSQL
+  postgres:
+    image: postgres:15-alpine
+    container_name: gestcon-postgres
+    environment:
+      POSTGRES_DB: gestcon
+      POSTGRES_USER: gestcon_user
+      POSTGRES_PASSWORD: gestcon_pass
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./database/scripts_melhorias.sql:/docker-entrypoint-initdb.d/init.sql
+    networks:
+      - gestcon-network
+
+  # Backend Spring Boot
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: gestcon-backend
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/gestcon
+      SPRING_DATASOURCE_USERNAME: gestcon_user
+      SPRING_DATASOURCE_PASSWORD: gestcon_pass
+      SPRING_JPA_HIBERNATE_DDL_AUTO: update
+      SPRING_PROFILES_ACTIVE: docker
+    ports:
+      - "8080:8080"
+    depends_on:
+      - postgres
+    networks:
+      - gestcon-network
+    volumes:
+      - ./logs:/app/logs
+
+  # Frontend Angular (para produção)
+  frontend:
+    build:
+      context: ./frontend/gestcon-ui
+      dockerfile: Dockerfile
+    container_name: gestcon-frontend
+    ports:
+      - "80:80"
+    depends_on:
+      - backend
+    networks:
+      - gestcon-network
+
+volumes:
+  postgres_data:
+
+networks:
+  gestcon-network:
+    driver: bridge

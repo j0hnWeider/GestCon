@@ -2,61 +2,32 @@ package com.gestcon.controller;
 
 import com.gestcon.model.Usuario;
 import com.gestcon.repository.UsuarioRepository;
-import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-import java.util.Optional;
-
+/**
+ * Controller REST para gerenciamento de usuários.
+ * Herda operações CRUD básicas da classe BaseController.
+ */
 @RestController
 @RequestMapping("/api/usuarios")
 @CrossOrigin(origins = "*")
-public class UsuarioController {
+public class UsuarioController extends BaseController<Usuario, Long> {
 
     @Autowired
     private UsuarioRepository usuarioRepository;
 
-    @GetMapping
-    public List<Usuario> getAllUsuarios() {
-        return usuarioRepository.findAll();
+    @Override
+    protected JpaRepository<Usuario, Long> getRepository() {
+        return usuarioRepository;
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<Usuario> getUsuarioById(@PathVariable Long id) {
-        Optional<Usuario> usuario = usuarioRepository.findById(id);
-        return usuario.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
-    }
-
-    @PostMapping
-    public Usuario createUsuario(@Valid @RequestBody Usuario usuario) {
-        return usuarioRepository.save(usuario);
-    }
-
-    @PutMapping("/{id}")
-    public ResponseEntity<Usuario> updateUsuario(@PathVariable Long id, @Valid @RequestBody Usuario usuarioDetails) {
-        Optional<Usuario> optionalUsuario = usuarioRepository.findById(id);
-        if (!optionalUsuario.isPresent()) {
-            return ResponseEntity.notFound().build();
-        }
-        Usuario usuario = optionalUsuario.get();
-        usuario.setNome(usuarioDetails.getNome());
-        usuario.setEmail(usuarioDetails.getEmail());
-        usuario.setSenha(usuarioDetails.getSenha());
-        usuario.setPapel(usuarioDetails.getPapel());
-
-        Usuario updatedUsuario = usuarioRepository.save(usuario);
-        return ResponseEntity.ok(updatedUsuario);
-    }
-
-    @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteUsuario(@PathVariable Long id) {
-        Optional<Usuario> usuario = usuarioRepository.findById(id);
-        if (!usuario.isPresent()) {
-            return ResponseEntity.notFound().build();
-        }
-        usuarioRepository.delete(usuario.get());
-        return ResponseEntity.noContent().build();
+    @Override
+    protected void updateEntity(Usuario existingUsuario, Usuario usuarioDetails) {
+        existingUsuario.setNome(usuarioDetails.getNome());
+        existingUsuario.setEmail(usuarioDetails.getEmail());
+        existingUsuario.setSenha(usuarioDetails.getSenha());
+        existingUsuario.setPapel(usuarioDetails.getPapel());
     }
 }
